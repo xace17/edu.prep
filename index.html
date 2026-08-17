@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduPrep | Student Learning Hub</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f7fb;
+    color: #172033;
+    transition: 0.3s;
+}
+
+header {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.hero {
+    padding: 70px 7%;
+    background: linear-gradient(135deg, #eef2ff, #faf5ff);
+}
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: #5b21b6;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 650px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn {
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 8px;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+section {
+    padding: 55px 7%;
+}
+
+.section-title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+
+.card h3 {
+    margin: 12px 0;
+}
+
+.card p {
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.icon {
+    font-size: 35px;
+}
+
+.card button {
+    border: none;
+    background: #eef2ff;
+    color: #4338ca;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.ncert {
+    background: #ffffff;
+}
+
+.ncert-card {
+    border-left: 5px solid #4f46e5;
+}
+
+.quiz-box {
+    background: white;
+    max-width: 700px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+
+.option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 13px;
+    margin: 10px 0;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #e0e7ff;
+}
+
+#quizResult {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.timer {
+    text-align: center;
+    background: #111827;
+    color: white;
+    padding: 35px;
+    border-radius: 18px;
+    max-width: 500px;
+}
+
+#time {
+    font-size: 55px;
+    margin: 20px;
+}
+
+.revision-card {
+    background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+}
+
+footer {
+    background: #111827;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+.dark {
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+.dark .card,
+.dark .quiz-box,
+.dark .ncert {
+    background: #1e293b;
+}
+
+.dark .section-subtitle,
+.dark .card p {
+    color: #cbd5e1;
+}
+
+.dark .hero {
+    background: #111827;
+}
+
+.dark .option {
+    background: #334155;
+    color: white;
+}
+
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav button {
+        margin: 4px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    section {
+        padding: 40px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">📚 EduPrep</div>
+
+    <nav>
+        <button onclick="goTo('home')">Home</button>
+        <button onclick="goTo('ncert')">NCERT</button>
+        <button onclick="goTo('study')">Study Hub</button>
+        <button onclick="goTo('quiz')">Quiz</button>
+        <button onclick="goTo('timer')">Timer</button>
+        <button onclick="toggleDark()">🌙</button>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section class="hero" id="home">
+    <h1>Study Smarter with <span>EduPrep</span></h1>
+
+    <p>
+        A simple student learning hub for exam preparation,
+        revision, quizzes, study resources and focused learning.
+    </p>
+
+    <button class="btn" onclick="goTo('study')">Start Learning</button>
+    <button class="btn" onclick="goTo('quiz')">Take a Quiz</button>
+</section>
+
+<!-- FEATURES -->
+<section>
+    <h2 class="section-title">Everything You Need</h2>
+    <p class="section-subtitle">Tools designed to make studying easier.</p>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>NCERT Books</h3>
+            <p>Find official NCERT learning resources.</p>
+            <button onclick="goTo('ncert')">Explore</button>
+        </div>
+
+        <div class="card">
+            <div class="icon">🧠</div>
+            <h3>Quiz Zone</h3>
+            <p>Test your knowledge with quick MCQs.</p>
+            <button onclick="goTo('quiz')">Start Quiz</button>
+        </div>
+
+        <div class="card">
+            <div class="icon">⚡</div>
+            <h3>Quick Revision</h3>
+            <p>Revise important concepts before exams.</p>
+            <button onclick="goTo('revision')">Revise</button>
+        </div>
+
+        <div class="card">
+            <div class="icon">⏱️</div>
+            <h3>Focus Timer</h3>
+            <p>Use a simple timer for focused study sessions.</p>
+            <button onclick="goTo('timer')">Start Timer</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- NCERT -->
+<section class="ncert" id="ncert">
+    <h2 class="section-title">📚 NCERT Resources</h2>
+    <p class="section-subtitle">
+        Access official NCERT resources for your studies.
+    </p>
+
+    <div class="cards">
+
+        <div class="card ncert-card">
+            <div class="icon">➗</div>
+            <h3>Mathematics</h3>
+            <p>Class 9 Mathematics NCERT resources.</p>
+            <a href="https://ncert.nic.in/textbook.php" target="_blank">
+                <button>Open NCERT</button>
+            </a>
+        </div>
+
+        <div class="card ncert-card">
+            <div class="icon">🔬</div>
+            <h3>Science</h3>
+            <p>Class 9 Science NCERT resources.</p>
+            <a href="https://ncert.nic.in/textbook.php" target="_blank">
+                <button>Open NCERT</button>
+            </a>
+        </div>
+
+        <div class="card ncert-card">
+            <div class="icon">🌍</div>
+            <h3>Social Science</h3>
+            <p>History, Geography, Civics and Economics.</p>
+            <a href="https://ncert.nic.in/textbook.php" target="_blank">
+                <button>Open NCERT</button>
+            </a>
+        </div>
+
+        <div class="card ncert-card">
+            <div class="icon">📖</div>
+            <h3>English</h3>
+            <p>NCERT English textbook resources.</p>
+            <a href="https://ncert.nic.in/textbook.php" target="_blank">
+                <button>Open NCERT</button>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- STUDY HUB -->
+<section id="study">
+    <h2 class="section-title">📖 Study Hub</h2>
+    <p class="section-subtitle">Choose a subject to begin studying.</p>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">➗</div>
+            <h3>Mathematics</h3>
+            <p>Formulas, concepts and practice questions.</p>
+            <button onclick="alert('Mathematics study material coming soon!')">
+                Open
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔬</div>
+            <h3>Science</h3>
+            <p>Physics, Chemistry and Biology revision.</p>
+            <button onclick="alert('Science study material coming soon!')">
+                Open
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌍</div>
+            <h3>Social Science</h3>
+            <p>History, Geography, Civics and Economics.</p>
+            <button onclick="alert('Social Science material coming soon!')">
+                Open
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">📘</div>
+            <h3>English</h3>
+            <p>Grammar, literature and vocabulary.</p>
+            <button onclick="alert('English material coming soon!')">
+                Open
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+    <h2 class="section-title">🧠 Quiz Zone</h2>
+    <p class="section-subtitle">Test your knowledge.</p>
+
+    <div class="quiz-box">
+
+        <h3 id="question">
+            What is the chemical formula of water?
+        </h3>
+
+        <button class="option" onclick="answer(false)">CO₂</button>
+        <button class="option" onclick="answer(true)">H₂O</button>
+        <button class="option" onclick="answer(false)">O₂</button>
+        <button class="option" onclick="answer(false)">NaCl</button>
+
+        <p id="quizResult"></p>
+
+    </div>
+</section>
+
+<!-- REVISION -->
+<section id="revision">
+    <h2 class="section-title">⚡ Quick Revision</h2>
+    <p class="section-subtitle">Quick facts to remember.</p>
+
+    <div class="cards">
+
+        <div class="card revision-card">
+            <h3>🔬 Science</h3>
+            <p>
+                Matter is anything that has mass and occupies space.
+            </p>
+        </div>
+
+        <div class="card revision-card">
+            <h3>➗ Mathematics</h3>
+            <p>
+                The sum of the angles of a triangle is 180°.
+            </p>
+        </div>
+
+        <div class="card revision-card">
+            <h3>🌍 Geography</h3>
+            <p>
+                The Earth is divided into different layers and zones.
+            </p>
+        </div>
+
+        <div class="card revision-card">
+            <h3>📖 English</h3>
+            <p>
+                A noun is a word used to name a person, place, animal or thing.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- TIMER -->
+<section id="timer">
+    <h2 class="section-title">⏱️ Focus Timer</h2>
+    <p class="section-subtitle">
+        Focus on your studies without distractions.
+    </p>
+
+    <div class="timer">
+
+        <div id="time">25:00</div>
+
+        <button class="btn" onclick="startTimer()">Start</button>
+        <button class="btn" onclick="pauseTimer()">Pause</button>
+        <button class="btn" onclick="resetTimer()">Reset</button>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <h3>📚 EduPrep</h3>
+    <p>Study smarter. Revise faster. Learn better.</p>
+    <br>
+    <p>Made as an educational website project.</p>
+</footer>
+
+<script>
+
+function goTo(id) {
+    document.getElementById(id).scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+/* DARK MODE */
+
+function toggleDark() {
+    document.body.classList.toggle("dark");
+}
+
+/* QUIZ */
+
+function answer(correct) {
+
+    const result = document.getElementById("quizResult");
+
+    if (correct) {
+        result.innerHTML = "✅ Correct! Great job!";
+        result.style.color = "green";
+    } else {
+        result.innerHTML = "❌ Not quite. Try again!";
+        result.style.color = "red";
+    }
+}
+
+/* TIMER */
+
+let seconds = 25 * 60;
+let timerInterval = null;
+
+function updateTimer() {
+
+    let minutes = Math.floor(seconds / 60);
+    let secs = seconds % 60;
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    secs = secs < 10 ? "0" + secs : secs;
+
+    document.getElementById("time").innerHTML =
+        minutes + ":" + secs;
+}
+
+function startTimer() {
+
+    if (timerInterval !== null) return;
+
+    timerInterval = setInterval(function() {
+
+        if (seconds > 0) {
+            seconds--;
+            updateTimer();
+        } else {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            alert("🎉 Study session completed!");
+        }
+
+    }, 1000);
+}
+
+function pauseTimer() {
+
+    clearInterval(timerInterval);
+    timerInterval = null;
+}
+
+function resetTimer() {
+
+    clearInterval(timerInterval);
+    timerInterval = null;
+
+    seconds = 25 * 60;
+
+    updateTimer();
+}
+
+</script>
+
+</body>
+  </html>
